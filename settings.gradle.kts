@@ -1,1 +1,1 @@
-rootProject.name = "resupply-demo-api"
+rootProject.name = "odoo-resupply-api"

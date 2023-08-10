@@ -1,6 +1,6 @@
-package com.josuablejeru.resupplydemoapi.repositories;
+package com.josuablejeru.resupplyapi.repositories;
 
-import com.josuablejeru.resupplydemoapi.models.Product;
+import com.josuablejeru.resupplyapi.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

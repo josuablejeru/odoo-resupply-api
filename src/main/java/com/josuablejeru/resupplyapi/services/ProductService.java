@@ -1,7 +1,7 @@
-package com.josuablejeru.resupplydemoapi.services;
+package com.josuablejeru.resupplyapi.services;
 
-import com.josuablejeru.resupplydemoapi.models.Product;
-import com.josuablejeru.resupplydemoapi.repositories.ProductRepository;
+import com.josuablejeru.resupplyapi.models.Product;
+import com.josuablejeru.resupplyapi.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
