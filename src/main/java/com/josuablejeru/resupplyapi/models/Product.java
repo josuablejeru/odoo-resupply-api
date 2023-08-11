@@ -1,10 +1,10 @@
 package com.josuablejeru.resupplyapi.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
-import java.util.UUID;
 
 @Entity
 public class Product {
@@ -12,19 +12,20 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    @Column(nullable = false)
+    private String id;
 
     private String name;
 
     public Product() {
-
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public Product(String name) {
+        this.name = name;
     }
 
-    public UUID getId() {
+
+    public String getId() {
         return id;
     }
 
@@ -32,7 +33,8 @@ public class Product {
         return this.name;
     }
 
-    public Product(String name) {
+    public void setName(String name) {
         this.name = name;
     }
+
 }
