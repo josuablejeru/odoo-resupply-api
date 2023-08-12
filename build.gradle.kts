@@ -4,6 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.2"
     id("org.graalvm.buildtools.native") version "0.9.23"
     id("org.liquibase.gradle") version "2.0.4"
+    id("io.freefair.lombok") version "8.2.2"
 }
 
 group = "com.josuablejeru"
