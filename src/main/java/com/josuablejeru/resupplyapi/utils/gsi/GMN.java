@@ -101,7 +101,7 @@ public final class GMN {
         sum %= 1021;
 
         // Split the 10-bit sum over two five-bit check characters
-        return "" + cset32.charAt(sum / 32) + cset32.charAt(sum % 32);
+        return String.valueOf(cset32.charAt(sum / 32)) + cset32.charAt(sum % 32);
     }
 
     /**
@@ -158,7 +158,7 @@ public final class GMN {
         // Split off the provided check character pair, recalculate them and ensure
         // that they match
         String part = gmn.substring(0, gmn.length() - 2);
-        String suppliedChecks = gmn.substring(gmn.length() - 2, gmn.length());
+        String suppliedChecks = gmn.substring(gmn.length() - 2);
 
         return checkCharacters(part).equals(suppliedChecks);
     }
@@ -201,8 +201,6 @@ public final class GMN {
         return out;
     }
 
-    ;
-
     /**
      * Indicate whether each character in a given GMN, provided as GS1 Company Prefix, model reference and check character components, belongs to the appropriate character set for the character position.
      *
@@ -221,8 +219,6 @@ public final class GMN {
         return out;
     }
 
-    ;
-
     /**
      * Indicate whether each character in a given GMN, provided as GS1 Company Prefix and model reference, belongs to the appropriate character set for the character position.
      *
@@ -239,8 +235,6 @@ public final class GMN {
 
         return out;
     }
-
-    ;
 
     // Perform some local consistency checks on a partial or complete GMN string
     private static void _formatChecks(String input, boolean complete)
@@ -266,7 +260,6 @@ public final class GMN {
                     throw new GS1Exception("Invalid check character at position " + (i + 1) + ": " + input.charAt(i));
             }
 
-        return;
     }
 
     // Perform some local consistency checks on the input provided as GS1 Company Prefix and model reference
@@ -305,7 +298,6 @@ public final class GMN {
         else
             _formatChecks(gcp + model + checks, true);
 
-        return;
     }
 
 }
