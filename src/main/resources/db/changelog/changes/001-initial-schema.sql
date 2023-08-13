@@ -1,4 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto"; -- extension to be used for URL safe uuid's
+CREATE EXTENSION IF NOT EXISTS "isn"; -- extension for working with EAN13
 
 -- Create a trigger function that takes no arguments.
 -- Trigger functions automatically have OLD, NEW records
@@ -66,8 +67,11 @@ $$ language 'plpgsql';
 CREATE TABLE product
 (
     id   TEXT PRIMARY KEY,
-    name TEXT
+    name TEXT,
+    barcode EAN13 UNIQUE
 );
+
+CREATE INDEX ON product(barcode);
 
 CREATE TRIGGER trigger_test_genid
     BEFORE INSERT
