@@ -1,0 +1,28 @@
+name: GraalVM build
+on: [push, pull_request]
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup GraalVM
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'graalvm'
+          java-version: '17'
+
+      - name: Build native docker image
+        run: ./gradlew bootBuildImage — imageName=${{ github.actor }}/${{ github.repository }}:latest
+
+      - name: Log in to GitHub Packages
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push Docker image to GitHub Packages
+        run: |
+          docker tag ${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ github.repository }}:latest
