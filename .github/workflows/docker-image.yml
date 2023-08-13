@@ -27,5 +27,5 @@ jobs:
 
       - name: Push Docker image to GitHub Packages
         run: |
-          docker tag ${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
+          docker tag ${{ github.repository }}:latest ghcr.io/${{ github.repository }}:latest
           docker push ghcr.io/${{ github.repository }}:latest
