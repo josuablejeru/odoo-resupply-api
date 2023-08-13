@@ -25,6 +25,10 @@ public class Product {
     @Setter
     private String barcode;
 
+    @Getter
+    @Setter
+    private Integer quantity;
+
     public Product(String name, String barcode) {
         this.name = name;
         this.barcode = barcode;

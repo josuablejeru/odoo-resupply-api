@@ -64,14 +64,15 @@ END;
 $$ language 'plpgsql';
 
 
-CREATE TABLE product
+CREATE TABLE IF NOT EXISTS product
 (
-    id   TEXT PRIMARY KEY,
-    name TEXT,
-    barcode EAN13 UNIQUE
+    id      TEXT PRIMARY KEY,
+    name    TEXT,
+    barcode EAN13 UNIQUE,
+    quantity INT
 );
 
-CREATE INDEX ON product(barcode);
+CREATE INDEX ON product (barcode);
 
 CREATE TRIGGER trigger_test_genid
     BEFORE INSERT
