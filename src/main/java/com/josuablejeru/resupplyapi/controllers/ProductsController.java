@@ -1,5 +1,7 @@
 package com.josuablejeru.resupplyapi.controllers;
 
+import com.josuablejeru.resupplyapi.controllers.requestbody.ChangeProductQuantity;
+import com.josuablejeru.resupplyapi.controllers.response.UpdateProductResponse;
 import com.josuablejeru.resupplyapi.models.Product;
 import com.josuablejeru.resupplyapi.services.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,5 +40,18 @@ public class ProductsController {
         log.debug("Create new Product: {}", product);
 
         return new ResponseEntity<>(createdProduct, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "{productId}/quantity", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public UpdateProductResponse changeQuantity(@PathVariable("productId") String productId, @RequestBody ChangeProductQuantity body) {
+        Integer newQuantity = body.getQuantity();
+
+        UpdateProductResponse response = new UpdateProductResponse();
+
+        response.setProductId(productId);
+        response.setQuantity(newQuantity);
+
+        return response;
     }
 }
