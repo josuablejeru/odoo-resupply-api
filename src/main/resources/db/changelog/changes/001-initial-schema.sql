@@ -1,5 +1,4 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto"; -- extension to be used for URL safe uuid's
-CREATE EXTENSION IF NOT EXISTS "isn"; -- extension for working with EAN13
 
 -- Create a trigger function that takes no arguments.
 -- Trigger functions automatically have OLD, NEW records
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS product
 (
     id      TEXT PRIMARY KEY,
     name    TEXT,
-    barcode EAN13 UNIQUE,
+    barcode TEXT UNIQUE,
     quantity INT
 );
 
