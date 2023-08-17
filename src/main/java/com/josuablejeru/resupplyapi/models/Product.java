@@ -1,6 +1,7 @@
 package com.josuablejeru.resupplyapi.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "product", indexes = @Index(columnList = "barcode"))
 public class Product {
 
@@ -28,9 +30,4 @@ public class Product {
     @Getter
     @Setter
     private Integer quantity;
-
-    public Product(String name, String barcode) {
-        this.name = name;
-        this.barcode = barcode;
-    }
 }
