@@ -1,5 +1,6 @@
 package com.josuablejeru.resupplyapi.controllers;
 
+import com.josuablejeru.resupplyapi.controllers.errors.ProductNotFoundException;
 import com.josuablejeru.resupplyapi.controllers.requestbody.ChangeProductQuantity;
 import com.josuablejeru.resupplyapi.controllers.response.UpdateProductResponse;
 import com.josuablejeru.resupplyapi.models.Product;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/products")
@@ -45,12 +47,17 @@ public class ProductsController {
     @PutMapping(value = "{productId}/quantity", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public UpdateProductResponse changeQuantity(@PathVariable("productId") String productId, @RequestBody ChangeProductQuantity body) {
-        Integer newQuantity = body.getQuantity();
+        Integer requestedQuantity = body.getQuantity();
+
+        Optional<Product> product = productService.getById(productId);
+        product.orElseThrow(() -> new ProductNotFoundException("Product not found"));
+
+        Integer newCalculatedQuantity = productService.changeQuantity(product.get(), requestedQuantity);
 
         UpdateProductResponse response = new UpdateProductResponse();
 
         response.setProductId(productId);
-        response.setQuantity(newQuantity);
+        response.setQuantity(newCalculatedQuantity);
 
         return response;
     }
