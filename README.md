@@ -26,7 +26,7 @@ services:
   backend:
     image: ghcr.io/josuablejeru/resupply-api:latest
     ports:
-      - '8080:8080![swagger.png](swagger.png)'
+      - '8080:8080'
 ```
 
 ## Development
