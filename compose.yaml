@@ -1,6 +1,16 @@
 services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    container_name: keycloak
+    environment:
+      - 'KEYCLOAK_ADMIN=admin'
+      - 'KEYCLOAK_ADMIN_PASSWORD=admin'
+    ports:
+      - '8080:8080'
+      - '8443:8443'
   postgres:
     image: 'postgres:latest'
+    container_name: postgres
     environment:
       - 'POSTGRES_DB=mydatabase'
       - 'POSTGRES_PASSWORD=secret'
