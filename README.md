@@ -39,7 +39,7 @@ services:
   backend:
     image: ghcr.io/josuablejeru/resupply-api:latest
     ports:
-      - '8080:8080'
+      - '8090:8090'
 ```
 
 ## Development
