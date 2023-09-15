@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS product
     quantity INT
 );
 
-CREATE INDEX ON product (barcode);
+CREATE UNIQUE INDEX barcode_idx ON product (barcode);
 
 CREATE TRIGGER trigger_test_genid
     BEFORE INSERT
